@@ -4,6 +4,7 @@ import { UsuariosModule } from './usuarios/usuarios.module';
 import { Usuario } from './usuarios/usuario.entity';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { GuardiasModule } from './Guardias/guardias.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { AppService } from './app.service';
       synchronize: false,
     }),
     UsuariosModule,
+    GuardiasModule,
   ],
   controllers: [AppController],
   providers: [AppService],
