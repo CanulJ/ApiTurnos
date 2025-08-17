@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { GuardiasService } from './guardias.service';
-import { Guardia } from './guardias.entity';
+import { Guardias } from './guardias.entity';
 
 @Controller('guardias')
 export class GuardiasController {
@@ -8,13 +8,13 @@ export class GuardiasController {
 
   // GET /guardias -> obtener todas las guardias
   @Get()
-  getAll(): Promise<Guardia[]> {
+  getAll(): Promise<Guardias[]> {
     return this.guardiasService.findAll();
   }
 
   // POST /guardias -> crear una nueva guardia
   @Post()
-  create(@Body() guardia: Guardia): Promise<Guardia> {
+  create(@Body() guardia: Guardias): Promise<Guardias> {
     return this.guardiasService.create(guardia);
   }
 }
