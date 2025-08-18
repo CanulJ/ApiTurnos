@@ -3,7 +3,7 @@ import { Usuario } from '../usuarios/usuario.entity';
 import { ManyToOne, JoinColumn } from 'typeorm';
 
 @Entity()
-export class Vacacion {
+export class Vacaciones {
   @PrimaryGeneratedColumn()
   id: number;
 

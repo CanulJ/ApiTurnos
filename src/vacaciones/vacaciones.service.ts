@@ -1,30 +1,30 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Vacacion } from './vacaciones.entity';
+import { Vacaciones } from './vacaciones.entity';
 
 @Injectable()
 export class VacacionesService {
   constructor(
-    @InjectRepository(Vacacion)
-    private readonly vacacionesRepository: Repository<Vacacion>,
+    @InjectRepository(Vacaciones)
+    private readonly vacacionesRepository: Repository<Vacaciones>,
   ) {}
 
   // Obtener todas las vacaciones
-  findAll(): Promise<Vacacion[]> {
+  findAll(): Promise<Vacaciones[]> {
     return this.vacacionesRepository.find({
       relations: ['usuario'], // si quieres traer también los datos del usuario
     });
   }
 
   // Crear una nueva vacación
-  create(vacacion: Vacacion): Promise<Vacacion> {
+  create(vacacion: Vacaciones): Promise<Vacaciones> {
     const nuevaVacacion = this.vacacionesRepository.create(vacacion);
     return this.vacacionesRepository.save(nuevaVacacion);
   }
 
   // Opcional: buscar vacaciones de un usuario específico
-  findByUsuario(usuarioId: number): Promise<Vacacion[]> {
+  findByUsuario(usuarioId: number): Promise<Vacaciones[]> {
     return this.vacacionesRepository.find({
       where: { usuarioId },
       relations: ['usuario'],

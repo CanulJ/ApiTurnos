@@ -7,7 +7,7 @@ import { AppService } from './app.service';
 import { GuardiasModule } from './Guardias/guardias.module';
 import { Guardias } from './Guardias/guardias.entity';
 import { VacacionesModule } from './vacaciones/vacaciones.module';
-import { Vacacion } from './vacaciones/vacaciones.entity';
+import { Vacaciones } from './vacaciones/vacaciones.entity';
 
 @Module({
   imports: [
@@ -18,7 +18,7 @@ import { Vacacion } from './vacaciones/vacaciones.entity';
       username: 'root',
       password: 'CxQEjBqgzCtVWRSjBmcTPefWxMrafJiE',
       database: 'railway',
-      entities: [Usuario, Guardias, Vacacion],
+      entities: [Usuario, Guardias, Vacaciones],
       synchronize: false,
     }),
     UsuariosModule,
