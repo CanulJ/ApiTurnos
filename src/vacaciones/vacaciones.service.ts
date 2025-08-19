@@ -17,4 +17,22 @@ export class VacacionesService {
   create(vacacion: Vacaciones): Promise<Vacaciones> {
     return this.vacacionesRepository.save(vacacion);
   }
+
+  // Eliminar
+  async remove(id: number): Promise<void> {
+    await this.vacacionesRepository.delete(id);
+  }
+
+  // Actualizar
+  async update(id: number, vacacion: Vacaciones): Promise<Vacaciones> {
+    await this.vacacionesRepository.update(id, vacacion);
+    const updated = await this.vacacionesRepository.findOne({
+      where: { id },
+      relations: ['usuario'],
+    });
+    if (!updated) {
+      throw new Error('Vacación no encontrada');
+    }
+    return updated;
+  }
 }
