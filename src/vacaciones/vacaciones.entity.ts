@@ -1,6 +1,8 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Usuario } from '../usuarios/usuario.entity';
+import { ManyToOne, JoinColumn } from 'typeorm';
 
-@Entity()
+@Entity('Vacaciones')
 export class Vacaciones {
   @PrimaryGeneratedColumn()
   id: number;
@@ -8,9 +10,13 @@ export class Vacaciones {
   @Column()
   usuarioId: number;
 
-  @Column()
+  @ManyToOne(() => Usuario, (usuario) => usuario.id)
+  @JoinColumn({ name: 'usuarioId' })
+  usuario: Usuario;
+
+  @Column({ type: 'date' })
   fechaInicio: string;
 
-  @Column()
+  @Column({ type: 'date' })
   fechaFin: string;
 }
