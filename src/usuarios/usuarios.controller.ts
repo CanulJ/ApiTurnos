@@ -1,8 +1,16 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Delete,
+  Param,
+  Put,
+} from '@nestjs/common';
 import { UsuariosService } from './usuarios.service';
 import { Usuarios } from './usuario.entity';
 
-@Controller('Usuarios')
+@Controller('usuarios') // ojo: minúscula, que coincida con la URL del frontend
 export class UsuariosController {
   constructor(private readonly usuariosService: UsuariosService) {}
 
@@ -14,5 +22,18 @@ export class UsuariosController {
   @Post()
   create(@Body() usuario: Usuarios): Promise<Usuarios> {
     return this.usuariosService.create(usuario);
+  }
+
+  @Put(':id')
+  update(
+    @Param('id') id: number,
+    @Body() usuario: Usuarios,
+  ): Promise<Usuarios> {
+    return this.usuariosService.update(id, usuario);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: number): Promise<void> {
+    return this.usuariosService.remove(id);
   }
 }
